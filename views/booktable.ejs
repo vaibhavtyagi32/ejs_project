@@ -336,6 +336,9 @@
                                 <thead>
                                     <tr>
                                         <th>
+                                            Book Image
+                                        </th>
+                                        <th>
                                             <b>Book</b> Name
                                         </th>
                                         <th>
@@ -370,6 +373,9 @@
                                 <tbody>
                                     <% books.forEach((book)=> { %>
                                         <tr>
+                                            <td>
+                                                <img src="<%=book.bookImage%>" width="20px" height="20px" alt="bookImage">
+                                            </td>
                                             <td>
                                                 <%= book.bookTitle %>
                                             </td>

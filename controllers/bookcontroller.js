@@ -2,6 +2,7 @@ const Book = require("../models/Book"); // Import your Book model
 const cloudinary=require("cloudinary").v2;
 async function addBook(req, res) {
   try {
+    if(req.file){
     cloudinary.config({
       cloud_name:"dcywjomji",
       api_key:"391973921914596",
@@ -12,8 +13,11 @@ async function addBook(req, res) {
     console.log(result.secure_url,"uploaded.secure_url");
    const book = new Book(req.body); // Creat e a new book instance
    book.bookImage=result.secure_url;
+   await book.save();
+  }
+    
 
-    await book.save(); // Save the book to the database
+     // Save the book to the database
     // res.status(201).json(book);
     let books = await Book.find({});
     res.render("booktable", { books: books }); // Respond with the created book and a 201 status
